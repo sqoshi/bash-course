@@ -1,30 +1,9 @@
 #!/usr/bin/bash
-path="$1";
-list="$(find $path)";
-i=0
-files=()
-uniq_files=()
-occ=()
-for file in $list; do
-	if [[ -f $file ]]; then
-		f_n=$(basename $file)
-		echo $f_n
-		files+=("$f_n");
-		if [[ ! "${uniq_files[@]}" =~ "$f_n" ]]; then
-			uniq_files+=("$f_n");
-		fi
-	fi
-done
-echo  "${files[@]}"
-echo  "${uniq_files[@]}"
-for uf in ${uniq_files[@]}; do
-	for f in ${files[@]}; do
-		if  [ $f = $uf ]; then
-			(( occ[$i]++ ))
-		fi
 
-	done
-	let "i++"
+path=$1
+out=$(bash exercise1 "$1")
+bash exercise1 $1| sort | uniq | while IFS= read -r line; do
+	  printf "Word %s occured " "$line"
+	  grep -wc "$line" <(bash exercise1 $path)
+	  printf "times"
 done
-
-echo "${occ[@]}"
