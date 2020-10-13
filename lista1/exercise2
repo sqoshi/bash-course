@@ -1,9 +1,0 @@
-#!/usr/bin/bash
-
-path=$1
-out=$(bash exercise1 "$1")
-bash exercise1 $1| sort | uniq | while IFS= read -r line; do
-	  printf "Word %s occured " "$line"
-	  grep -wc "$line" <(bash exercise1 $path)
-	  printf "times"
-done

@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+find test -type f -exec cat {} +| sort | while read line; do
+	for word in $line; do
+		printf "%s occured " "$word"
+		grep -wc "$word" <(find test -type f -exec cat {} +)
+	done
+done
