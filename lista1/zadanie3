@@ -3,6 +3,6 @@
 find "$1" -type f -exec cat {} +| sort | while read line; do
 	for word in $line; do
 		printf "%s - " "$word"
-		grep -wc "$word" <(find "$1" -type f -exec cat {} +)
+		find "$1" -type f -exec grep  -wo "$word" {} + |  sort | uniq | wc -l
 	done
-done | sort | uniq 
+done | sort | uniq
