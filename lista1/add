@@ -1,0 +1,1 @@
+cat "$line2" | grep -w '\("$word"\).*\1'
