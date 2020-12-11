@@ -29,7 +29,6 @@ do
 		action=$(echo $line | awk '{print $1}')
 		file=$(echo $line | awk '{print $2}')
 		file=$(echo "${file/$repository/}")
-		flag_change=0
 		if [[ "$file" == "${repository::len-1}" ]] ; then
 			git add *
 		elif [[ "$action" == "A"  ]] ; then
